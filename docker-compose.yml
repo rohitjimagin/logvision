@@ -23,8 +23,11 @@ services:
       - ES_JAVA_OPTS=-Xms1g -Xmx1g
       - xpack.security.enabled=false
       - http.host=0.0.0.0
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
     networks:
       - elastic
+
 
   kibana:
     image: kibana:8.6.1
@@ -66,3 +69,6 @@ services:
 
 networks:
   elastic:
+
+volumes:
+  elasticsearch_data:

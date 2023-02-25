@@ -1,0 +1,26 @@
+
+# Separate Docker Compose file for rails service
+# Filename: rails-compose.yml
+
+version: '3'
+
+services:
+  rails:
+    image: syntaxhacker/raillog:v1.1
+    ports:
+      - "3000"
+    networks:
+      - elastic
+    environment:
+      FLUENTD_HOST: fluentd
+    restart: always
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: any
+
+networks:
+  elastic:

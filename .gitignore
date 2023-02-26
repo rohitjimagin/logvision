@@ -72,3 +72,4 @@ Gemfile.lock
 
 
 fluentd/log/*.log
+fluentd/log/*.log.*

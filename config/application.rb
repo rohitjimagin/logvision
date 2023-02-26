@@ -21,9 +21,11 @@ module SampleApp
     })
 
     config.lograge.formatter = Lograge::Formatters::Json.new
-    # add ip address to log
     config.lograge.custom_options = lambda do |event|
-      { ip: Socket.ip_address_list.detect(&:ipv4_private?).ip_address }
+      {
+        ip: Socket.ip_address_list.detect(&:ipv4_private?).ip_address,
+        payload: event.payload
+      }
     end
   end
 end
